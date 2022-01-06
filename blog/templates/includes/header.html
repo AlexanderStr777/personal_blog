@@ -1,0 +1,50 @@
+{% load static %}
+{% with request.resolver_match.view_name as view_name %}
+  <div class="row">
+    <div class="col-12 col-lg-3" id="logo-title">
+      <h1>
+        Персональный сайт
+        <br>
+        Александра Струнского
+      </h1>
+    </div>
+    <div class="col-12 col-lg-9 align-self-end">
+      <div class="row justify-content-end">
+        <div class="col-12 col-lg-12" id="social-icons-block">
+          <img class="social-icon" src="{% static 'img/template/academiaedu.svg' %}" alt="Academia.edu">
+          <img class="social-icon" src="{% static 'img/template/github.svg' %}" alt="Github" width="48" height="48">
+          <img class="social-icon" src="{% static 'img/template/instagram.svg' %}" alt="Instagram.com" width="48" height="48">
+          <img class="social-icon" src="{% static 'img/template/vk.svg' %}" alt="Vk.ru" width="48" height="48">
+        </div>
+        <div class="col-12 col-lg-12">
+          <nav class="navbar navbar-expand-sm navbar-light" id="main-menu">
+            <div class="container-fluid">
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link {% if view_name  == 'posts:index' %}active{% endif %}" aria-current="page" href="{% url 'posts:index' %}">Главная</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Обо мне</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link {% if view_name  == 'posts:post_categories' or view_name  == 'posts:post_category' or view_name  == 'posts:post'  %}active{% endif %}" href="{% url 'posts:post_categories' %}">Заметки</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Публикации</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Проекты</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endwith %}

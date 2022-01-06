@@ -1,0 +1,24 @@
+<!-- templates/posts/posts_category.html -->
+{% extends 'base.html' %}
+{% load thumbnail %}
+{% block title %}
+  {{ title }}
+{% endblock %}
+{% block content %}
+  <div class="container">
+    <div class="row">
+      {% for category in category_list %}
+        <div class="col-12 col-lg-3 note-card"  >
+          <div class="card h-100 ">
+            {% thumbnail category.image "500x250" crop="center" as im %}
+              <img src="{{ im.url }}" class="card-img-top img-thumbnail">
+            {% endthumbnail %}
+            <div class="card-body">
+              <h5 class="card-title"><a href="{% url 'posts:post_category' category_id=category.id slug=category.slug %}">{{ category.title }}</a></h5>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,25 @@
+<!-- templates/posts/includes/posts_list -->
+<article class="container">
+    <div class="row">
+      <div class="col-12 col-lg-3 article-info">
+        {% if post.category %}
+        <h3><a href="{% url 'posts:post_category' category_id=post.category.id slug=post.category.slug %}">{{ post.category.title }}</a></h3>
+        {% endif %}
+        <p> {{ post.pub_date|date:"d E Y" }} </p>
+      </div>
+      <div class="col-12 col-lg-9 article-description">
+        <h3 class="article-title">{{ post.title }}</h3>
+        <p align="justify">
+          {% if post.text|length > 1000 %}
+            {{ post.text|truncatechars:1000|safe }}
+            <br>
+            <br>
+            <a href="{% url 'posts:post' post_id=post.id slug=post.slug %}">>>>Читать продолжение<a/>
+          {% else %}
+            {{ post.text|safe }}
+          {% endif %}
+        </p>
+        {% if not forloop.last %}<hr>{% endif %}
+      </div>
+    </div>
+  </article>

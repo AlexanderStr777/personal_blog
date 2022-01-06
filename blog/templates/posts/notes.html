@@ -1,0 +1,11 @@
+<!-- templates/posts/notes.html -->
+{% extends 'base.html' %}
+{% block title %}
+  {{ title }}
+{% endblock %}
+{% block content %}
+{% for post in page_obj %}
+  {% include 'posts/includes/posts_list.html' %}
+{% endfor %}
+  {% include 'posts/includes/paginator.html' %}
+{% endblock %}

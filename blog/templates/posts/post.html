@@ -1,0 +1,21 @@
+<!-- templates/posts/post.html -->
+{% extends 'base.html' %}
+{% block title %}
+  {{ title }}
+{% endblock %}
+{% block content %}
+  <article class="container">
+    <div class="row">
+      <div class="col-12 col-lg-3 article-info">
+        {% if post.category %}
+        <h3><a href="{% url 'posts:post_category' category_id=post.category.id slug=post.category.slug %}">{{ post.category.title }}</a></h3>
+        {% endif %}
+        <p> {{ post.pub_date|date:"d E Y" }} </p>
+      </div>
+      <div class="col-12 col-lg-9 article-description">
+        <h3 class="article-title">{{ post.title }}</h3>
+        <p align="justify">{{ post.text|safe }}</p>
+      </div>
+    </div>
+  </article>
+{% endblock %}
